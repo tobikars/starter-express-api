@@ -1,11 +1,8 @@
-# starter-express-api
+# sheetaki
 
-This is the simplest possible nodejs api using express that responds to any request with: 
-```
-Yo!
-```
+Spreadsheet CSV conversion function.  Deployed on <https://sheetaki.now.sh>
 
-### Deploy it in 7 seconds: 
+Examples:
 
-[![Deploy to Cyclic](https://deploy.cyclic.app/button.svg)](https://deploy.cyclic.app/)
+- [https://obamawhitehouse.archives.gov/sites/default/files/omb/budget/fy2014/assets/receipts.xls](https://sheetaki.now.sh/api/data/?url=https://obamawhitehouse.archives.gov/sites/default/files/omb/budget/fy2014/assets/receipts.xls)
 

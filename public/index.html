@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>SheetJS Spreadsheet Conversion Demo</title>
+</head>
+<body>
+<style> a { text-decoration: none } </style>
+
+<form method="POST" action="api/upload" enctype="multipart/form-data">
+
+<div id="fileSelector">
+<label for="file">Select Excel file to convert: </label>
+<input type="file" name="file" id="fileInput" onchange="getSheets()">
+</div>
+
+<div id="sheetSelector" hidden>Select sheet to convert: 
+	<select name="N" id="N" >
+</select>
+</div>
+
+<div id="exportSelector">
+<label for="t">Export as</label>
+<select name="t" id="t">
+	<option value="csv">CSV</option>
+	<option value="json">JSON</option>
+	<option value="html">HTML TABLE</option>
+</select>
+</div>
+<div  id="uploadFileButton">
+<input type="submit" value="upload file" >
+</form>
+</div>
+
+<br>
+<pre>This service is based on <a href="https://github.com/SheetJS/sheetaki">Sheetaki</a> which runs on the <a href="https://github.com/SheetJS/sheetjs">SheetJS spreadsheet library</a></pre>
+<script>
+
+  async function getSheets() {
+	console.log(fileInput.files[0])
+	let formData = new FormData(); 
+	formData.append("N", -1)
+	formData.append("t", "json")
+	formData.append("file", fileInput.files[0]);
+	const res = await fetch('api/upload', {
+		method: "POST", 
+		body: formData,
+	}); 
+	const sheets = await res.json()
+	console.log(sheets)
+
+	const sb = document.querySelector('#N')
+	sb.length = 0;
+	sheets.map( (sheetName,index) => {
+		const newOption= new Option(sheetName, index)
+		sb.add(newOption,undefined);
+	} )
+	document.querySelector('#sheetSelector').removeAttribute('hidden')
+  }
+
+</script>
+
+</body>
+</html>
