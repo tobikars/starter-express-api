@@ -12,7 +12,7 @@
 <input type="file" name="file" id="fileInput" onchange="getSheets()">
 </div>
 
-<div id="sheetSelector" hidden>Select sheet to convert: 
+<div id="sheetSelector">Select sheet to convert: 
 	<select name="N" id="N" >
 </select>
 </div>
@@ -53,7 +53,6 @@
 		const newOption= new Option(sheetName, index)
 		sb.add(newOption,undefined);
 	} )
-	document.querySelector('#sheetSelector').removeAttribute('hidden')
   }
 
 </script>
